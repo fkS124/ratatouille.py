@@ -48,7 +48,7 @@ class FrameWork:
                         coordinates: tuple[int, int], 
                         color=(0, 0, 0), 
                         color_txt=(255, 255, 255)):
-        render = font.render(str(clock.get_fps()), True, color_txt)
+        render = font.render(str(round(clock.get_fps())), True, color_txt)
         rect = render.get_rect(topleft=coordinates)
         pg.draw.rect(self.screen, color, rect)
         self.screen.blit(render, rect)
