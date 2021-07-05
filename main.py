@@ -18,14 +18,15 @@ def main():
 
     frame_work = pg_fr_w.init(screen)
     frame_work.new_button((200, 200), # coordinates
-                          pg.font.Font("assets_demo/Basic-Regular.ttf", 50),
-                          "Button",
-                          (0, 0, 0), 
-                          (255, 255, 255),
-                          (25, 85, 120),
-                          (120, 25, 58),
-                          (300, 100),
-                          test_func,
+                          pg.font.Font("assets_demo/Basic-Regular.ttf", 50),  # font
+                          "Button",  # text
+                          (0, 0, 0),  # color text
+                          (255, 255, 255),  # color hovering text
+                          (25, 85, 120),  # color box
+                          (120, 25, 58),  # color hovering box
+                          (300, 100),  # size of the box
+                          test_func,  # function to call when a click happen
+                          (15, 15)  # args needed for the func
                           )
 
     while running:

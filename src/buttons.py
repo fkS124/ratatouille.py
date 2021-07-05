@@ -27,16 +27,22 @@ class Button:
         self.rendered_text_rect = self.rendered_text.get_rect(center=(size[0]//2, size[1]//2))
         self.rendered_text_hover_rect = self.rendered_text_hover.get_rect(center=(size[0]//2, size[1]//2))
 
+        # setting up the surface of the button with the given size and color, and finally getting its rect
+        # to blit it with the given coordinates
         self.surface = pg.Surface(size)
         self.surface.fill(color)
         self.rect = self.surface.get_rect(topleft=coordinates)
 
+        # getting all the args needed for the nex functions
         self.color = color
         self.color_hover = color_hover
         self.func = func
         self.args = args
 
     def update(self, screen):
+
+        """Update function is there to blit the button, and manage the colors and hovering,
+        it finally blit the surface to the screen given as an argument"""
         
         # getting the coordinates of the mouse to check the hovering
         mo_coo = pg.mouse.get_pos()
@@ -53,12 +59,14 @@ class Button:
 
     def handle_click(self, pos):
 
+        """Function to manage clicks"""
+
         # detecting clicks
         if self.rect.collidepoint(pos):
             # checking if a function is assigned to the button
             if self.func is not None:
                 # checking if there are some args to put in the function
                 if self.args is not None:
-                    self.func(self.args)
+                    self.func(*self.args)
                 else:
                     self.func()
