@@ -3,18 +3,39 @@ import src.pygame_framework as pg_fr_w
 
 """
 To use Ratatouille Framework you have to:
+** Start method means that the method has to be called at the start of
+the game and game loop method means that the method must be called inside
+the loop **
 
-Ratatouille = Ratouille.init(display_surface)
-# Commands
+ratatouille = Ratouille.init(display_surface)
+
+
+# Commands : Start Methods
 .new_button() # Creates a button
 Guide:
 .new_button(coordinates, font_surface, text, color_text,hovering_color_text, size, func, args)
 
-.pause_button() # Creates a Pause button 
+.pause_button() # Creates a Pause button
 Guide:
 .pause_button(coordinates, font_surface, text, size,func)
 
+# Commands : Game Loop Methods
+.show_fps()  # show current fps
+Guide:
+.show_fps(clock, font, coordinates, color, color_txt)
 
+To make the framework work you have to use this architecture of project :
+# at the start
+- initializing the engine with .init()
+- defining all your buttons and stuff
+
+# game loop:
+- ratatouille.update() -> update all your stuff
+
+    # event loop:
+        - ratatouille.handle_events(event)
+
+- (OPTIONAL) : draw shapes with the ratatouille.draw."shape" -> 
 """
 
 def test_func(arg1=None, arg2=None):
@@ -26,10 +47,12 @@ def main():
     screen = pg.display.set_mode((900, 600))
     pg.display.set_caption("Pygame Frame Work Working Example")
     running = True
+    clock = pg.time.Clock()
+    standard_font = pg.font.Font("assets_demo/Basic-Regular.ttf", 50)
 
     frame_work = pg_fr_w.init(screen)
     frame_work.new_button((200, 200), # coordinates
-                          pg.font.Font("assets_demo/Basic-Regular.ttf", 50),  # font
+                          standard_font,  # font
                           "Button",  # text
                           (0, 0, 0),  # color text
                           (255, 255, 255),  # color hovering text
@@ -50,6 +73,8 @@ def main():
 
         screen.fill((255, 255, 255))
         frame_work.update()
+
+        frame_work.show_fps(clock, standard_font, (0, 0))
 
         pg.display.update()
 
