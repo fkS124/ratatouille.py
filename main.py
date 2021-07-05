@@ -2,7 +2,18 @@ import pygame as pg
 import src.pygame_framework as pg_fr_w
 
 """
-ADD SOME DOC RIGHT HERE, I'M TOO LAZY TO DO IT
+To use Ratatouille Framework you have to:
+
+Ratatouille = Ratouille.init(display_surface)
+# Commands
+.new_button() # Creates a button
+Guide:
+.new_button( coordinates, font_surface, text, color_text,hovering_color_text, size,func)
+
+.pause_button() # Creates a Pause button 
+Guide:
+.pause_button(coordinates, font_surface, text, size,func)
+
 
 """
 
