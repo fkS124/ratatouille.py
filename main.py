@@ -75,7 +75,7 @@ def main():
         frame_work.update()
 
         frame_work.show_fps(clock, standard_font, (0, 0))
-
+        clock.tick(60)
         pg.display.update()
 
 
