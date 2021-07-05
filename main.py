@@ -8,7 +8,7 @@ Ratatouille = Ratouille.init(display_surface)
 # Commands
 .new_button() # Creates a button
 Guide:
-.new_button( coordinates, font_surface, text, color_text,hovering_color_text, size,func)
+.new_button(coordinates, font_surface, text, color_text,hovering_color_text, size, func, args)
 
 .pause_button() # Creates a Pause button 
 Guide:
