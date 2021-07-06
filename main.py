@@ -15,6 +15,10 @@ ratatouille = Ratouille.init(display_surface)
 Guide:
 .new_button(coordinates, font_surface, text, color_text,hovering_color_text, size, func, args)
 
+.new_special_button() # Create a button using images
+Guide:                           # image can be a loaded image or just a path
+.new_special_button(coordinates, image, image_hover, size, func, args)
+
 .pause_button() # Creates a Pause button
 Guide:
 .pause_button(coordinates, font_surface, text, size,func)
@@ -41,6 +45,9 @@ To make the framework work you have to use this architecture of project :
 def test_func(arg1=None, arg2=None):
     print(f"Tested Successfully {arg1}, {arg2}")
 
+def sum_(arg1=0, arg2=0):
+    print(arg1 + arg2)
+
 
 def main():
 
@@ -62,6 +69,14 @@ def main():
                           test_func,  # function to call when a click happen
                           (15, 15)  # args needed for the func
                           )
+    frame_work.new_special_button(
+        (500, 500), # coordinates
+        "assets_demo/button1.png", # path of image 1
+        "assets_demo/button2.png", # path of image 2
+        (64, 64),
+        sum_,
+        (12, 65)
+    )
 
     while running:
 

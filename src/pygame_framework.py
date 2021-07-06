@@ -1,5 +1,6 @@
 import pygame as pg
 import src.buttons as buttons
+import src.spec_button as spec_button
 
 
 def init(surface: pg.Surface):
@@ -42,6 +43,17 @@ class FrameWork:
         self.buttons.append(buttons.Button(coordinates, font, text, color_text,
                                            color_text_hover,color, color_hover,
                                            size, func, args))
+
+    def new_special_button(self, coordinates: tuple[int, int],
+                                 image: pg.Surface or str,
+                                 image_hover: pg.Surface or str,
+                                 size: tuple[int, int],
+                                 func=None,
+                                 args=None
+                                 ):
+        self.buttons.append(spec_button.SpecialButton(coordinates, image,
+                                                      image_hover, size,
+                                                      func, args))
 
     def show_fps(self, clock: pg.time.Clock, 
                         font: pg.font.Font, 
