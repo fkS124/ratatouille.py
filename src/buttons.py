@@ -12,6 +12,7 @@ class Button:
                  color: tuple[int, int, int],
                  color_hover: tuple[int, int, int], 
                  size: tuple[int, int],  # not sure about size
+                 border_radius=0,
                  func=None,  # default is None
                  args=None  # default is None
                  ): 
@@ -24,20 +25,22 @@ class Button:
         self.rendered_text_hover = self.font.render(text, True, color_text_hover)
 
         # getting the rects to blit in the update method, centering the rect according to the button size
-        self.rendered_text_rect = self.rendered_text.get_rect(center=(size[0]//2, size[1]//2))
-        self.rendered_text_hover_rect = self.rendered_text_hover.get_rect(center=(size[0]//2, size[1]//2))
+        center = size[0]//2+coordinates[0], size[1]//2+coordinates[1]
+
+        self.rendered_text_rect = self.rendered_text.get_rect(center=center)
+        self.rendered_text_hover_rect = self.rendered_text_hover.get_rect(center=center)
 
         # setting up the surface of the button with the given size and color, and finally getting its rect
         # to blit it with the given coordinates
-        self.surface = pg.Surface(size)
-        self.surface.fill(color)
-        self.rect = self.surface.get_rect(topleft=coordinates)
+        self.rect = pg.Rect(*coordinates, *size)
 
         # getting all the args needed for the nex functions
         self.color = color
         self.color_hover = color_hover
         self.func = func
         self.args = args
+        
+        self.border_radius = border_radius
 
     def update(self, screen):
 
@@ -49,13 +52,11 @@ class Button:
 
         # checking for mouse hover
         if self.rect.collidepoint(mo_coo):
-            self.surface.fill(self.color_hover)
-            self.surface.blit(self.rendered_text_hover, self.rendered_text_hover_rect)
+            pg.draw.rect(screen, self.color_hover, self.rect, border_radius=self.border_radius)
+            screen.blit(self.rendered_text_hover, self.rendered_text_hover_rect)
         else:
-            self.surface.fill(self.color)
-            self.surface.blit(self.rendered_text, self.rendered_text_rect)
-
-        screen.blit(self.surface, self.rect)
+            pg.draw.rect(screen, self.color, self.rect, border_radius=self.border_radius)
+            screen.blit(self.rendered_text, self.rendered_text_rect)
 
     def handle_click(self, pos):
 

@@ -7,13 +7,15 @@ To use Ratatouille Framework you have to:
 the game and game loop method means that the method must be called inside
 the loop **
 
+Also, a "*" after an argument means that is OPTIONAL.
+
 ratatouille = Ratouille.init(display_surface)
 
 
 # Commands : Start Methods
 .new_button() # Creates a button
 Guide:
-.new_button(coordinates, font_surface, text, color_text,hovering_color_text, size, func, args)
+.new_button(coordinates, font_surface, text, color_text,hovering_color_text, size, border_radius*, func*, args*)
 
 .new_special_button() # Create a button using images
 Guide:                           # image can be a loaded image or just a path
@@ -66,8 +68,8 @@ def main():
                           (25, 85, 120),  # color box
                           (120, 25, 58),  # color hovering box
                           (300, 100),  # size of the box
-                          test_func,  # function to call when a click happen
-                          (15, 15)  # args needed for the func
+                          func=test_func,
+                          args=(84, 48)
                           )
     frame_work.new_special_button(
         (500, 500), # coordinates

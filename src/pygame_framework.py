@@ -38,11 +38,12 @@ class FrameWork:
                          color: tuple[int, int, int],
                          color_hover: tuple[int, int, int], 
                          size: tuple[int, int],  # not sure about size
+                         border_radius=0,
                          func=None,
                          args=None):
         self.buttons.append(buttons.Button(coordinates, font, text, color_text,
                                            color_text_hover,color, color_hover,
-                                           size, func, args))
+                                           size, border_radius, func, args))
 
     def new_special_button(self, coordinates: tuple[int, int],
                                  image: pg.Surface or str,
